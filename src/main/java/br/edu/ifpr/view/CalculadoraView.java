@@ -20,7 +20,7 @@ import br.edu.ifpr.controller.CalculadoraController;
  */
 public class CalculadoraView extends JFrame {
 
-    private CalculadoraController calculadoraController = new CalculadoraController();
+    public CalculadoraController calculadoraController;
 
     private JTextField campoNumero1;
     private JTextField campoNumero2;
@@ -31,6 +31,7 @@ public class CalculadoraView extends JFrame {
     private JButton botaoDividir;
 
     public CalculadoraView() {
+        this.calculadoraController = new CalculadoraController(this);
 
         setTitle("Calculadora");
         setSize(400, 300);
@@ -63,9 +64,7 @@ public class CalculadoraView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double num1 = Double.parseDouble(campoNumero1.getText());
-                    double num2 = Double.parseDouble(campoNumero2.getText());
-                    campoResultado.setText(String.valueOf(calculadoraController.calculate(num1, num2, "addition")));
+                    campoResultado.setText(String.valueOf(calculadoraController.addition()));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro: Entrada inválida!");
                 }
@@ -77,9 +76,7 @@ public class CalculadoraView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double num1 = Double.parseDouble(campoNumero1.getText());
-                    double num2 = Double.parseDouble(campoNumero2.getText());
-                    campoResultado.setText(String.valueOf(calculadoraController.calculate(num1, num2, "subtraction")));
+                    campoResultado.setText(String.valueOf(calculadoraController.subtraction()));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro: Entrada inválida!");
                 }
@@ -91,9 +88,7 @@ public class CalculadoraView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double num1 = Double.parseDouble(campoNumero1.getText());
-                    double num2 = Double.parseDouble(campoNumero2.getText());
-                    campoResultado.setText(String.valueOf(calculadoraController.calculate(num1, num2, "multiplication")));
+                    campoResultado.setText(String.valueOf(calculadoraController.multiplication()));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro: Entrada inválida!");
                 }
@@ -105,11 +100,7 @@ public class CalculadoraView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double num1 = Double.parseDouble(campoNumero1.getText());
-                    double num2 = Double.parseDouble(campoNumero2.getText());
-
-                    campoResultado.setText(String.valueOf(calculadoraController.calculate(num1, num2, "division")));
-
+                    campoResultado.setText(String.valueOf(calculadoraController.division()));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro: Entrada inválida!");
                 } catch (ArithmeticException ex) {
@@ -117,6 +108,13 @@ public class CalculadoraView extends JFrame {
                 }
             }
         });
+
+    }
+
+    public void getValues() {
+        double num1 = Double.parseDouble(campoNumero1.getText());
+        double num2 = Double.parseDouble(campoNumero2.getText());
+        calculadoraController.setViewValues(num1, num2);
     }
 
 }

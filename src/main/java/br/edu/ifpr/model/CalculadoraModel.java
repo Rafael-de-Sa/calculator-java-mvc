@@ -10,26 +10,40 @@ package br.edu.ifpr.model;
  */
 public class CalculadoraModel {
 
-    public double chooseOperation(Double num1, Double num2, String operation) {
-        double result = 0;
-        if (operation.equals("division")) {
-            result = division(num1, num2);
-        }
-        if (operation.equals("multiplication")) {
-            result = multiplication(num1, num2);
-        }
-        if (operation.equals("addition")) {
-            result = addition(num1, num2);
-        }
-        if (operation.equals("subtraction")) {
-            result = subtraction(num1, num2);
-        }
-        return result;
+    private double num1, num2;
+
+    private double getNum1() {
+        return num1;
     }
 
-    private double division(double num1, double num2) {
-        validadeDivision(num2);
-        return num1 / num2;
+    private void setNum1(double num1) {
+        this.num1 = num1;
+    }
+
+    private double getNum2() {
+        return num2;
+    }
+
+    private void setNum2(double num2) {
+        this.num2 = num2;
+    }
+
+    public void setViewValues(double num1, double num2) {
+        setNum1(num1);
+        setNum2(num2);
+    }
+
+    public double addition() {
+        return getNum1() + getNum2();
+    }
+
+    public double subtraction() {
+        return getNum1() - getNum2();
+    }
+
+    public double division() {
+        validadeDivision(getNum2());
+        return getNum1() / getNum2();
     }
 
     private void validadeDivision(double num2) {
@@ -38,15 +52,8 @@ public class CalculadoraModel {
         }
     }
 
-    private double multiplication(double num1, double num2) {
-        return num1 * num2;
+    public double multiplication() {
+        return getNum1() * getNum2();
     }
 
-    private double addition(double num1, double num2) {
-        return num1 + num2;
-    }
-
-    private double subtraction(double num1, double num2) {
-        return num1 - num2;
-    }
 }
