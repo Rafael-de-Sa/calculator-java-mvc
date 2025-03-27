@@ -10,12 +10,43 @@ package br.edu.ifpr.model;
  */
 public class CalculadoraModel {
 
-    public void multiplicacao(double a, double b) {
-
+    public double chooseOperation(Double num1, Double num2, String operation) {
+        double result = 0;
+        if (operation.equals("division")) {
+            result = division(num1, num2);
+        }
+        if (operation.equals("multiplication")) {
+            result = multiplication(num1, num2);
+        }
+        if (operation.equals("addition")) {
+            result = addition(num1, num2);
+        }
+        if (operation.equals("subtraction")) {
+            result = subtraction(num1, num2);
+        }
+        return result;
     }
 
-    public boolean multiplicacaoValidation(double b) {
-        //validar segundo numero 
-        return false;
+    private double division(double num1, double num2) {
+        validadeDivision(num2);
+        return num1 / num2;
+    }
+
+    private void validadeDivision(double num2) {
+        if (num2 == 0) {
+            throw new ArithmeticException("Erro: Divisão por 0 inválida!");
+        }
+    }
+
+    private double multiplication(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    private double addition(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    private double subtraction(double num1, double num2) {
+        return num1 - num2;
     }
 }
