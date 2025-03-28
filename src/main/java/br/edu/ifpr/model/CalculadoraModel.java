@@ -42,11 +42,11 @@ public class CalculadoraModel {
     }
 
     public double division() {
-        validadeDivision(getNum2());
+        validateDivision(getNum2());
         return getNum1() / getNum2();
     }
 
-    private void validadeDivision(double num2) {
+    private void validateDivision(double num2) {
         if (num2 == 0) {
             throw new ArithmeticException("Erro: Divisão por 0 inválida!");
         }
